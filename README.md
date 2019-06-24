@@ -50,7 +50,7 @@ Features :
 Note : As it is initial version it has only takes the backup of your SMS. In future version it also supports like Call History, Contacts ...
 
 
-                                                          # Thank You
+                                                       #Thank You
 
 
 

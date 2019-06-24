@@ -35,10 +35,22 @@ Sample Payload :
 }
 ```
 
+Features : 
+
+  1. Battery Consious
+      Though PowerBackup reads your phone SMS once in 15 mins, It doesn't connect to your server until you have data to be pushed.
+  2. Assured Delivery
+      As it uses Job scheduler for the SMS backup, it will be backed up to your server without failure.
+  3. Security
+      It takes security code from the client app and adds it to the Authorization Header, So Unknown sourcs can't corrupt the data
+  4. Better Resource Management
+      As the backup requires the Internet Connection, This application won't run the service if you don't have internet connection. by         which Unnessary resource consumption is reduced
+
+
 Note : As it is initial version it has only takes the backup of your SMS. In future version it also supports like Call History, Contacts ...
 
 
-#Thank You
+                                                          # Thank You
 
 
 

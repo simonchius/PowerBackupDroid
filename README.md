@@ -8,7 +8,7 @@ This app requires the following information for the initial configuration.
 
 1. User Identifier -> It is any string which is used to identify the user or mobile Ex : Simon-Android-S8_plus:<mobile_number>
 2. API -> Your API Ex: https://your-server.com/api/backup/sms
-3. Security Key -> This security key is attached to your API request as a Authendication Header like Authorization : Bearer <Security key>
+3. Security Key -> This security key is attached to your API request as a Authentication Header like Authorization : Bearer <Security key>
   
 Sample Payload : 
 

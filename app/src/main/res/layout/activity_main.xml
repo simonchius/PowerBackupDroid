@@ -10,7 +10,7 @@
 
     <EditText
             android:id="@+id/user_identifier"
-            android:layout_marginTop="150dp"
+            android:layout_marginTop="100dp"
             android:layout_width="match_parent"
             android:layout_height="64dp"
             android:hint="User Identifier (Phone no or email or any)"
@@ -27,7 +27,6 @@
             android:layout_marginEnd="30dp"/>
 
 
-
     <EditText
             android:id="@+id/security_key_et"
             android:layout_marginTop="50dp"
@@ -36,6 +35,8 @@
             android:hint="Security Key"
             android:layout_marginStart="30dp"
             android:layout_marginEnd="30dp"/>
+
+
     <Button
             android:id="@+id/save_btn"
             android:layout_marginTop="50dp"

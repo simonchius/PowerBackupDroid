@@ -2,7 +2,7 @@
 
 It is an Android application which takes the back up of your SMS and Call History and sends it to your own Server. It never stores the copy in Local DB or any other private servers.
 
-#App Required Information
+### App Required Information
 
 This app requires the following information for the initial configuration.
 
@@ -49,6 +49,19 @@ Features :
 
 Note : As it is initial version it has only takes the backup of your SMS. In future version it also supports like Call History, Contacts ...
 
+### Steps to use the app
+
+1. Download the latest apk from releases -> [Click here](https://github.com/simonchius/PowerBackupDroid/releases)
+2. Install the app in your device
+3. Configure the backup server details in the app using the `Set Configuration` option
+
+<img src="https://raw.githubusercontent.com/shivthepro/PowerBackupDroid/readmechanges/screenshots/1.JPG" alt="" height="400" />
+
+4. Provide the requested information for the server configuration (Providing User Id might help you identify the data in the server)
+
+<img src="https://raw.githubusercontent.com/shivthepro/PowerBackupDroid/readmechanges/screenshots/2.jpg" alt="" height="400" />
+
+5. Once configured click on the `Backup Now` option to take a backup of all sms in your device to the server you configured.
 
                                                        #Thank You
 

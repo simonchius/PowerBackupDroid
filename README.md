@@ -61,7 +61,10 @@ Note : As it is initial version it has only takes the backup of your SMS. In fut
 
 <img src="https://raw.githubusercontent.com/simonchius/PowerBackupDroid/master/screenshots/2.jpg" alt="" height="400" />
 
-5. Once configured click on the `Backup Now` option to take a backup of all sms in your device to the server you configured.
+5. As soon as the Configuration is saved, it enables the auto back option by default. You can trun it off in Home page.
+
+6. It also allows your to manual back up by clicking Backup Now button
+
 
                                                        #Thank You
 

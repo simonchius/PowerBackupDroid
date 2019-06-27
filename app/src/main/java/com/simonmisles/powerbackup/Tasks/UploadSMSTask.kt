@@ -5,6 +5,7 @@ import android.content.SharedPreferences
 import android.os.AsyncTask
 import android.util.Log
 import com.fasterxml.jackson.databind.ObjectMapper
+import com.simonmisles.powerbackup.Helper.Logger
 import com.simonmisles.powerbackup.Helper.PreferenceHelper
 import com.simonmisles.powerbackup.Helper.SMSHelper
 import com.simonmisles.powerbackup.Http.HttpRequest
@@ -70,7 +71,7 @@ class UploadSMSTask(val mContext: Context, val mSyncFromTime: Long = -1L) : Asyn
             )
             do {
 
-                Log.d(JobSchedulerService.TAG, "The SMS list size is : ${lAllSMSList.size}")
+                Logger.debug(JobSchedulerService.TAG, "The SMS list size is : ${lAllSMSList.size}")
                 var lDataArray: JSONArray
 
                 if (lAllSMSList.size > MAX_SMS_TO_SERVER_IN_A_REQUEST) {
@@ -91,7 +92,7 @@ class UploadSMSTask(val mContext: Context, val mSyncFromTime: Long = -1L) : Asyn
                 lSMSJson.put("data", lDataArray)
                 lPayloadJson.put("sms", lSMSJson)
 
-                Log.d(JobSchedulerService.TAG, "The SMS payload is : $lPayloadJson")
+                Logger.debug(JobSchedulerService.TAG, "The SMS payload is : $lPayloadJson")
 
                 lRequest.mPayload = lPayloadJson.toString().toByteArray()
 
@@ -102,7 +103,7 @@ class UploadSMSTask(val mContext: Context, val mSyncFromTime: Long = -1L) : Asyn
                 } else {
                     return false
                 }
-                Log.d(JobSchedulerService.TAG, "The SMS request is success ")
+                Logger.debug(JobSchedulerService.TAG, "The SMS request is success ")
 
             } while (lAllSMSList.isNotEmpty())
             return true

@@ -22,14 +22,15 @@ import java.net.HttpURLConnection
  * @param mSyncFromTime We can request this class to sync from a timestamp which will not modify the last sync time in preference.
  * It is an optional param, if you don't send it, it syncs the value from the last sync point
  */
-class UploadSMSTask(val mContext: Context, val mSyncFromTime : Long = -1L) : AsyncTask<Void, Long, Boolean>() {
+class UploadSMSTask(val mContext: Context, val mSyncFromTime: Long = -1L) : AsyncTask<Void, Long, Boolean>() {
     lateinit var mConfiguredAPI: String
     lateinit var mSecurityKey: String
     lateinit var mPreferences: SharedPreferences
     var mLastUploadSMSTime: Long = 0
-    var mUpdateSMSSyncPoint : Boolean = false
+    var mUpdateSMSSyncPoint: Boolean = false
+    var mIsConfigured: Boolean = false
 
-    companion object{
+    companion object {
         val MAX_SMS_TO_SERVER_IN_A_REQUEST = 50
     }
 
@@ -38,10 +39,11 @@ class UploadSMSTask(val mContext: Context, val mSyncFromTime : Long = -1L) : Asy
         mPreferences = PreferenceHelper(mContext).getPreference()
         mConfiguredAPI = mPreferences.getString(PreferenceHelper.CONFIGURED_API, "")
         mSecurityKey = mPreferences.getString(PreferenceHelper.SECURITY_KEY, "")
-        if(mSyncFromTime == -1L){
+        mIsConfigured = mPreferences.getBoolean(PreferenceHelper.IS_CONFIGURED, false)
+        if (mSyncFromTime == -1L) {
             mLastUploadSMSTime = mPreferences.getLong(PreferenceHelper.LAST_UPDATED_SMS_TIMESTAMP, 0)
             mUpdateSMSSyncPoint = true
-        }else{
+        } else {
             mLastUploadSMSTime = mSyncFromTime
             mUpdateSMSSyncPoint = false
         }
@@ -49,11 +51,12 @@ class UploadSMSTask(val mContext: Context, val mSyncFromTime : Long = -1L) : Asy
 
     override fun doInBackground(vararg params: Void?): Boolean {
 
-        if (mConfiguredAPI.isNotEmpty() && mSecurityKey.isNotEmpty()) {
+        if (mIsConfigured) {
 
-            var lAllSMSList: MutableList<SMS> =  SMSHelper().getAllMessages(mContext, mLastMessageTime = mLastUploadSMSTime)
+            var lAllSMSList: MutableList<SMS> =
+                SMSHelper().getAllMessages(mContext, mLastMessageTime = mLastUploadSMSTime)
 
-            if(lAllSMSList.isEmpty()) return false
+            if (lAllSMSList.isEmpty()) return false
 
             var lHeader = mutableMapOf<String, String>()
             val lMapper = ObjectMapper()
@@ -71,7 +74,10 @@ class UploadSMSTask(val mContext: Context, val mSyncFromTime : Long = -1L) : Asy
                 var lDataArray: JSONArray
 
                 if (lAllSMSList.size > MAX_SMS_TO_SERVER_IN_A_REQUEST) {
-                    var lList = lAllSMSList.subList((lAllSMSList.lastIndex.minus(MAX_SMS_TO_SERVER_IN_A_REQUEST)), lAllSMSList.lastIndex)
+                    var lList = lAllSMSList.subList(
+                        (lAllSMSList.lastIndex.minus(MAX_SMS_TO_SERVER_IN_A_REQUEST)),
+                        lAllSMSList.lastIndex
+                    )
                     lDataArray = JSONArray(lMapper.writeValueAsString(lList))
                     mLastUploadSMSTime = lList[0].timestamp
                     lAllSMSList.removeAll(lList)
@@ -93,7 +99,7 @@ class UploadSMSTask(val mContext: Context, val mSyncFromTime : Long = -1L) : Asy
 
                 if (lResponse.mResponseStatusCode == HttpURLConnection.HTTP_OK) {
                     publishProgress(mLastUploadSMSTime)
-                }else{
+                } else {
                     return false
                 }
                 Log.d(JobSchedulerService.TAG, "The SMS request is success ")
@@ -106,15 +112,16 @@ class UploadSMSTask(val mContext: Context, val mSyncFromTime : Long = -1L) : Asy
 
     override fun onProgressUpdate(vararg values: Long?) {
         super.onProgressUpdate(*values)
-        if(mUpdateSMSSyncPoint) {
+        if (mUpdateSMSSyncPoint) {
             mPreferences.edit().putLong(PreferenceHelper.LAST_UPDATED_SMS_TIMESTAMP, values[0]!!).apply()
         }
     }
 
     override fun onPostExecute(result: Boolean?) {
         super.onPostExecute(result)
-        if(mUpdateSMSSyncPoint){
-        mPreferences.edit().putLong(PreferenceHelper.LAST_UPDATED_SMS_TIMESTAMP, mLastUploadSMSTime).apply()}
+        if (mUpdateSMSSyncPoint) {
+            mPreferences.edit().putLong(PreferenceHelper.LAST_UPDATED_SMS_TIMESTAMP, mLastUploadSMSTime).apply()
+        }
 
     }
 

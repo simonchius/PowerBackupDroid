@@ -3,4 +3,9 @@
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
+    <color name="white">#ffffff</color>
+    <color name="semi_white">#BBffffff</color>
+    <color name="colorBlackDark">#1D252E</color>
+    <color name="btn_color">#4a5255</color>
+    <color name="navTitleNormal">#aeb7c3</color>
 </resources>

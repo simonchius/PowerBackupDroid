@@ -12,6 +12,8 @@ class PreferenceHelper(val mContext: Context) {
         val SECURITY_KEY                    = "security_key"
         val USER_IDENTIFIER                 = "user_identifier"
         val LAST_UPDATED_SMS_TIMESTAMP      = "last_updated_timestamp"
+        val IS_CONFIGURED                   = "is_configured"
+        val CAN_BACKUP                      = "can_backup"
     }
 
     fun getPreference() : SharedPreferences{

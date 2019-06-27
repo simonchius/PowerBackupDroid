@@ -21,7 +21,7 @@ class JobScheduleHelper(val mContext: Context) {
             lJobInfoBuilder.setPeriodic(900000) // 15 minutes in milliseconds is 900000.
             lJobInfoBuilder.setRequiredNetworkType(JobInfo.NETWORK_TYPE_ANY)
             if (lJobScheduler.schedule(lJobInfoBuilder.build()) < 1) {
-                Log.d(TAG, "onCreate: Some error while scheduling the job")
+                Logger.debug(TAG, "onCreate: Some error while scheduling the job")
             }
         }
     }

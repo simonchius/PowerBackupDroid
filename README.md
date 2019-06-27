@@ -55,11 +55,11 @@ Note : As it is initial version it has only takes the backup of your SMS. In fut
 2. Install the app in your device
 3. Configure the backup server details in the app using the `Set Configuration` option
 
-<img src="https://raw.githubusercontent.com/shivthepro/PowerBackupDroid/readmechanges/screenshots/1.JPG" alt="" height="400" />
+<img src="https://raw.githubusercontent.com/simonchius/PowerBackupDroid/readmechanges/screenshots/1.JPG" alt="" height="400" />
 
 4. Provide the requested information for the server configuration (Providing User Id might help you identify the data in the server)
 
-<img src="https://raw.githubusercontent.com/shivthepro/PowerBackupDroid/readmechanges/screenshots/2.jpg" alt="" height="400" />
+<img src="https://raw.githubusercontent.com/simonchius/PowerBackupDroid/readmechanges/screenshots/2.jpg" alt="" height="400" />
 
 5. Once configured click on the `Backup Now` option to take a backup of all sms in your device to the server you configured.
 

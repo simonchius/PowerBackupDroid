@@ -35,6 +35,11 @@ class HomeActivity : AppCompatActivity() {
         backup_enable_switch.isChecked = mPreference.getBoolean(PreferenceHelper.CAN_BACKUP, false)
 
         backup_enable_switch.setOnCheckedChangeListener { buttonView, isChecked ->
+            if(isChecked){
+                Toast.makeText(this@HomeActivity,"Auto backup is enabled", Toast.LENGTH_SHORT).show()
+            }else{
+                Toast.makeText(this@HomeActivity,"Auto backup is turned off", Toast.LENGTH_SHORT).show()
+            }
             mPreference.edit().putBoolean(PreferenceHelper.CAN_BACKUP, isChecked).apply()
         }
         backup_now_tv.setOnClickListener {

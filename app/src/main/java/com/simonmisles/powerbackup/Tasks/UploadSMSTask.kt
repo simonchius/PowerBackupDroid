@@ -28,7 +28,7 @@ class UploadSMSTask(val mContext: Context, val mSyncFromTime: Long = -1L) : Asyn
     lateinit var mPreferences: SharedPreferences
     var mLastUploadSMSTime: Long = 0
     var mUpdateSMSSyncPoint: Boolean = false
-    var mCanBackup: Boolean = false
+    var mIsConfigured: Boolean = false
 
     companion object {
         val MAX_SMS_TO_SERVER_IN_A_REQUEST = 50
@@ -39,7 +39,7 @@ class UploadSMSTask(val mContext: Context, val mSyncFromTime: Long = -1L) : Asyn
         mPreferences = PreferenceHelper(mContext).getPreference()
         mConfiguredAPI = mPreferences.getString(PreferenceHelper.CONFIGURED_API, "")
         mSecurityKey = mPreferences.getString(PreferenceHelper.SECURITY_KEY, "")
-        mCanBackup = mPreferences.getBoolean(PreferenceHelper.CAN_BACKUP, false)
+        mIsConfigured = mPreferences.getBoolean(PreferenceHelper.IS_CONFIGURED, false)
         if (mSyncFromTime == -1L) {
             mLastUploadSMSTime = mPreferences.getLong(PreferenceHelper.LAST_UPDATED_SMS_TIMESTAMP, 0)
             mUpdateSMSSyncPoint = true
@@ -51,7 +51,7 @@ class UploadSMSTask(val mContext: Context, val mSyncFromTime: Long = -1L) : Asyn
 
     override fun doInBackground(vararg params: Void?): Boolean {
 
-        if (mCanBackup) {
+        if (mIsConfigured) {
 
             var lAllSMSList: MutableList<SMS> =
                 SMSHelper().getAllMessages(mContext, mLastMessageTime = mLastUploadSMSTime)

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center_vertical"
+        android:background="@drawable/app_gradient_bg">
+
+    <TextView
+            android:id="@+id/set_config_tv"
+            android:layout_width="match_parent"
+            android:layout_height="64dp"
+            android:text="Set Configuration"
+            android:gravity="center"
+            android:textSize="14sp"
+            android:background="@drawable/rect_rd3_white"
+            android:textColor="@android:color/black"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"/>
+
+    <TextView
+            android:id="@+id/backup_now_tv"
+            android:layout_width="match_parent"
+            android:layout_height="64dp"
+            android:text="Back up now"
+            android:gravity="center"
+            android:textSize="14sp"
+            android:background="@drawable/rect_rd3_white"
+            android:textColor="@android:color/black"
+            android:layout_marginTop="50dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"/>
+
+    <android.support.v7.widget.SwitchCompat
+            android:id="@+id/backup_enable_switch"
+            android:layout_width="match_parent"
+            android:layout_height="64dp"
+            android:text="Backup Status"
+            android:gravity="center_vertical"
+            android:textSize="14sp"
+            android:paddingLeft="30dp"
+            android:paddingRight="30dp"
+            android:background="@drawable/rect_rd3_white"
+            android:textColor="@android:color/black"
+            android:layout_marginTop="50dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"/>
+
+</LinearLayout>

@@ -53,7 +53,7 @@ Note : As it is initial version it has only takes the backup of your SMS. In fut
 
 ### Steps to use the app
 
-1. Download the latest apk from releases -> [Click here](https://github.com/simonchius/PowerBackupDroid/releases/download/v1.0.0.20190627/powerbackup-release-v1.0.0.20190627.apk) 
+1. Download the latest apk from releases -> [Click here](https://github.com/simonchius/PowerBackupDroid/releases/download/v1.0.0_20190704/powerbackup-release-v1.0.0.20190704.apk) 
 2. Install the app in your device
 3. Configure the backup server details in the app using the `Set Configuration` option
 

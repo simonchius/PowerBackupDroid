@@ -2,11 +2,14 @@ package com.simonmisles.powerbackup.Http
 
 import com.simonmisles.powerbackup.BuildConfig
 import java.io.*
+import java.lang.StringBuilder
 import java.net.HttpURLConnection
+import java.net.HttpURLConnection.HTTP_CREATED
 import java.net.HttpURLConnection.HTTP_OK
 import java.net.URL
 
 class HttpURLFetcher(val mUserAgent: String = "Android : ${BuildConfig.APPLICATION_ID} ${BuildConfig.VERSION_NAME} Version ${BuildConfig.VERSION_CODE}") {
+    val TAG = "HttpURLFetcher"
     fun doFetch(mRequest: HttpRequest): HttpResponse {
 
         val lTimeOut = if (mRequest.mTimeOut > 0) mRequest.mTimeOut else 30
@@ -35,22 +38,22 @@ class HttpURLFetcher(val mUserAgent: String = "Android : ${BuildConfig.APPLICATI
             }
         }
 
-        var lResponseStringBuffer: StringBuffer? = null
+        var lResponseStringBuffer: StringBuilder? = null
         var lInputStream: InputStream? = null
         val lResponseCode = lHttpURLConnection.responseCode
 
         try {
             lInputStream = lHttpURLConnection.inputStream
         } catch (ioe: IOException) {
-            if (lResponseCode != HTTP_OK) {
+            if (lResponseCode != HTTP_OK && lResponseCode != HTTP_CREATED) {
                 lInputStream = lHttpURLConnection.errorStream
             }
         }
 
         if (lInputStream != null) {
-            lResponseStringBuffer = StringBuffer()
+            lResponseStringBuffer = StringBuilder()
             val mReader = BufferedReader(InputStreamReader(lInputStream))
-            mReader.readLine().forEach { lResponseStringBuffer.append(it) }
+            mReader.forEachLine { lResponseStringBuffer.append(it) }
             lInputStream.close()
         }
 

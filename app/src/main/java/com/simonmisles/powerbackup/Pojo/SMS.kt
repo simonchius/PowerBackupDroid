@@ -12,7 +12,9 @@ data class SMS(
 
         var timestamp: Long,
 
-        val userIdentifier: String
+        val userIdentifier: String,
+
+        val simSlot: String
 ) : Serializable,
     Comparable<SMS> {
     override fun compareTo(other: SMS): Int {

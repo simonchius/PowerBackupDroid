@@ -11,7 +11,7 @@ class SMSHelper {
         val lUserIdentifier = PreferenceHelper(mContext).getPreference().getString(PreferenceHelper.USER_IDENTIFIER,"")
         var lSmsList = mutableListOf<SMS>()
         val lSMSUri : Uri = Uri.parse("content://sms/inbox")
-        val lCursor: Cursor = mContext.contentResolver.query(lSMSUri, arrayOf("_id","body","address","date"), "date > $mLastMessageTime", null, "date DESC")
+        val lCursor: Cursor = mContext.contentResolver.query(lSMSUri, arrayOf("_id","body","address","date","sim_slot"), "date > $mLastMessageTime", null, "date DESC")
         if(lCursor.moveToFirst()){
             do{
                 lSmsList.add(
@@ -20,7 +20,8 @@ class SMSHelper {
                         lCursor.getString(1),
                         lCursor.getString(2),
                         lCursor.getLong(3),
-                        lUserIdentifier
+                        lUserIdentifier,
+                        "SIM ${lCursor.getInt(4)+1}"
                     )
                 )
 

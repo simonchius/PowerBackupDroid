@@ -21,14 +21,16 @@ Sample Payload :
               "msg": "Play Rummy FREE! Rs.5,000 as Welcome Bonus http://1kx.in/KEbVbX Win Real Money!",
               "sourceNumber": "BT-WINWIN",
               "timestamp": 1561098395896,
-              "userIdentifier" : "Simon-Android-S8_plus:987654526367"
+              "userIdentifier" : "Simon-Android-S8_plus:987654526367",
+              "simSlot": "SIM 2",
             },
             {
             "id": "8380",
             "msg": "Dear Customer, This Number Available In Vodafone Postpaid For Instant Activation Dial",
             "sourceNumber": "+919876543210",
             "timestamp": 1561095428631,
-             "userIdentifier" : "Simon-Android-S8_plus:987654526367"
+             "userIdentifier" : "Simon-Android-S8_plus:987654526367",
+             "simSlot": "SIM 1",
             }
         ]
     }
